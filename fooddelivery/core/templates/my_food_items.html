@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom: 20px;">🍽 My Food Items</h2>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+
+    {% for food in foods %}
+    <div class="card">
+
+        {% if food.image %}
+            <img src="{{ food.image.url }}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 12px;">
+        {% endif %}
+
+        <h3 style="margin-top: 10px;">{{ food.name }}</h3>
+
+        <p style="color: gray;">{{ food.description|truncatewords:10 }}</p>
+
+        <p><strong>₹{{ food.price }}</strong></p>
+
+        <p style="font-size: 14px; color: #ff3f81;">
+            {{ food.category.name }}
+        </p>
+
+        <a href="{% url 'edit_food_item' food.id %}">
+            <button class="btn">Edit</button>
+        </a>
+
+        <a href="{% url 'delete_food_item' food.id %}" 
+            onclick="return confirm('Are you sure you want to delete this item?')">
+            <button class="btn" style="background:#ff4d4d;">
+                Delete
+            </button>
+        </a>
+
+    </div>
+    {% empty %}
+        <p>No food items added yet.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

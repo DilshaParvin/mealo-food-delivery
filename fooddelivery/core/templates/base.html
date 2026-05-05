@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mealo</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Poppins',sans-serif;
+            background:#f7f7f7;
+            color:#222;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        /* 🔥 Navbar */
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:16px 40px;
+            background:linear-gradient(90deg,#ff7e5f,#ff3f81);
+            color:white;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:600;
+        }
+
+        .nav-links{
+            display:flex;
+            align-items:center;
+            gap:20px;
+        }
+
+        .nav-links a{
+            color:white;
+            font-size:15px;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+            opacity:0.8;
+        }
+
+        /* 📦 Main Container */
+        .container{
+            padding:30px;
+        }
+
+        /* 🪄 Card */
+        .card{
+            background:white;
+            border-radius:20px;
+            padding:18px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.06);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-3px);
+        }
+
+        /* 🎯 Buttons */
+        .btn{
+            border:none;
+            background:linear-gradient(90deg,#ff7e5f,#ff3f81);
+            color:white;
+            padding:10px 18px;
+            border-radius:10px;
+            cursor:pointer;
+            font-family:'Poppins',sans-serif;
+        }
+
+        /* ✍ Inputs */
+        input,
+        textarea,
+        select{
+            width:100%;
+            padding:12px;
+            border:1px solid #e5e5e5;
+            border-radius:12px;
+            font-family:'Poppins',sans-serif;
+            transition:0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus{
+            outline:none;
+            border-color:#ff3f81;
+            box-shadow:0 0 6px rgba(255,63,129,0.2);
+        }
+
+        /* 🔍 Search */
+        .search-section{
+            margin-bottom:25px;
+        }
+
+        .search-box{
+            display:flex;
+            align-items:center;
+            background:white;
+            border-radius:16px;
+            padding:0 16px;
+            height:56px;
+            box-shadow:0 3px 12px rgba(0,0,0,0.06);
+        }
+
+        .search-box input{
+            border:none;
+            background:none;
+            box-shadow:none;
+        }
+
+        .search-icon{
+            margin-right:10px;
+            color:gray;
+        }
+
+        /* 🍱 Categories */
+        .category-row{
+            display:flex;
+            gap:12px;
+            overflow-x:auto;
+            margin-bottom:25px;
+        }
+
+        .category-row::-webkit-scrollbar{
+            display:none;
+        }
+
+        .category-pill{
+            background:white;
+            padding:10px 18px;
+            border-radius:999px;
+            white-space:nowrap;
+            font-size:14px;
+            cursor:pointer;
+            box-shadow:0 2px 8px rgba(0,0,0,0.05);
+            transition:0.3s;
+        }
+
+        .category-pill:hover{
+            background:#ff3f81;
+            color:white;
+        }
+
+        /* 🍔 Food Grid */
+        .food-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+            gap:22px;
+        }
+
+        .food-img{
+            width:100%;
+            height:180px;
+            object-fit:cover;
+            border-radius:14px;
+            margin-bottom:12px;
+        }
+
+        .desc{
+            color:#777;
+            font-size:14px;
+            margin:10px 0;
+        }
+
+        .food-bottom{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-top:12px;
+        }
+
+        .price{
+            color:#ff3f81;
+            font-weight:600;
+        }
+
+        /* 🛒 Cart */
+        .cart-item{
+            display:flex;
+            gap:18px;
+            margin-bottom:18px;
+        }
+
+        .cart-img{
+            width:100px;
+            height:100px;
+            object-fit:cover;
+            border-radius:12px;
+        }
+
+        .qty-controls{
+            display:flex;
+            gap:10px;
+            align-items:center;
+            margin-top:10px;
+        }
+
+        .qty-controls a{
+            background:#f1f1f1;
+            padding:5px 10px;
+            border-radius:6px;
+            color:black;
+        }
+
+        /* 📦 Orders */
+        .order-card{
+            margin-bottom:20px;
+        }
+
+        .item-row{
+            display:flex;
+            justify-content:space-between;
+            margin-bottom:6px;
+        }
+
+        .date{
+            font-size:13px;
+            color:gray;
+        }
+
+        .status{
+            padding:6px 10px;
+            border-radius:8px;
+            font-size:12px;
+            text-transform:capitalize;
+        }
+
+        .pending{background:#fff3cd;}
+        .accepted{background:#cce5ff;}
+        .preparing{background:#ffe0b2;}
+        .out_for_delivery{background:#d1ecf1;}
+        .delivered{background:#d4edda;}
+        .cancelled{background:#f8d7da;}
+
+        /* 📊 Analytics */
+        .analytics-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .analytics-card{
+            text-align:center;
+            padding:30px 20px;
+        }
+
+        .analytics-card h2{
+            font-size:32px;
+            color:#ff3f81;
+            margin-bottom:8px;
+        }
+
+        .analytics-card p{
+            color:gray;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🔥 Navbar -->
+<div class="navbar">
+
+    <div class="logo">Mealo</div>
+
+    <div class="nav-links">
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'dashboard' %}">Home</a>
+
+            {% if user.role == 'restaurant' %}
+                <a href="{% url 'restaurant_orders' %}">Orders</a>
+            {% endif %}
+            {% if user.role == 'customer' %}
+                <a href="{% url 'customer_restaurants' %}">
+                    Restaurants
+                </a>
+
+            {% endif %}
+
+            <a href="{% url 'view_cart' %}">Cart</a>
+
+            <a href="{% url 'logout' %}">Logout</a>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">Login</a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<!-- 📦 Main -->
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

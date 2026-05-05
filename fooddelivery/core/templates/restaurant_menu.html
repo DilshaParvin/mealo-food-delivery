@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- 🍽️ Restaurant Header -->
+<div class="card" style="margin-bottom:30px;">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">
+
+        <div>
+
+            <h1 style="margin-bottom:8px;">
+                🍴 {{ restaurant.name }}
+            </h1>
+
+            <p class="desc">
+                📍 {{ restaurant.address }}
+            </p>
+
+        </div>
+
+        <div>
+
+            <span style="
+                background:#ffe8ef;
+                color:#ff3f81;
+                padding:10px 16px;
+                border-radius:30px;
+                font-size:14px;
+                font-weight:500;
+            ">
+                {{ foods|length }} Items
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 🔍 Search -->
+<form method="GET" class="search-section">
+
+    <div class="search-box">
+
+        <span class="search-icon">🔍</span>
+
+        <input type="text"
+               name="q"
+               placeholder="Search food items...">
+
+    </div>
+
+</form>
+
+
+<!-- 🍱 Category Pills -->
+<div class="category-row">
+
+    <div class="category-pill">🍕 Pizza</div>
+    <div class="category-pill">🍔 Burger</div>
+    <div class="category-pill">🥤 Drinks</div>
+    <div class="category-pill">🍰 Desserts</div>
+    <div class="category-pill">🍗 Chicken</div>
+
+</div>
+
+
+<!-- 🍔 Food Grid -->
+<div class="food-grid">
+
+    {% for food in foods %}
+
+    <div class="card food-card">
+
+        {% if food.image %}
+            <img src="{{ food.image.url }}" class="food-img">
+        {% endif %}
+
+        <h3>
+            {{ food.name }}
+        </h3>
+
+        <p class="desc">
+            {{ food.description|truncatewords:12 }}
+        </p>
+
+        <div class="food-bottom">
+
+            <span class="price">
+                ₹{{ food.price }}
+            </span>
+
+            <a href="{% url 'add_to_cart' food.id %}">
+                <button class="btn">
+                    Add
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <p>No food items available 😴</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

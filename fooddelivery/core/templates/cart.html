@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom: 20px;">🛒 My Cart</h2>
+
+<div style="display: flex; gap: 30px;">
+
+    <!-- 🧾 Cart Items -->
+    <div style="flex: 2;">
+
+        {% for item in cart_items %}
+        <div class="card cart-item">
+
+            <!-- Image -->
+            {% if item.food.image %}
+            <img src="{{ item.food.image.url }}" class="cart-img">
+            {% endif %}
+
+            <!-- Details -->
+            <div style="flex: 1; margin-left: 15px;">
+                <h3>{{ item.food.name }}</h3>
+                <p class="desc">{{ item.food.description|truncatewords:10 }}</p>
+
+                <p class="price">₹{{ item.food.price }}</p>
+
+                <!-- Quantity controls -->
+                <div class="qty-controls">
+                    <a href="{% url 'decrease_qty' item.id %}">➖</a>
+                    <span>{{ item.quantity }}</span>
+                    <a href="{% url 'increase_qty' item.id %}">➕</a>
+                </div>
+            </div>
+
+        </div>
+        {% empty %}
+            <p>Your cart is empty 🥲</p>
+        {% endfor %}
+
+    </div>
+
+    <!-- 💰 Summary -->
+    <div class="card" style="flex: 1; height: fit-content;">
+
+        <h3>Order Summary</h3>
+
+        <hr>
+
+        <p>Total Items: {{ cart_items|length }}</p>
+
+        <p><strong>Total Price: ₹{{ total_price }}</strong></p>
+
+        <a href="{% url 'checkout' %}">
+            <button class="btn" style="width: 100%; margin-top: 10px;">
+                Proceed to Checkout
+            </button>  
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

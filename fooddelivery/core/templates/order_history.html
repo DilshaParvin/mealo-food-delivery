@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom: 20px;">📦 My Orders</h2>
+
+{% for order in orders %}
+<div class="card order-card">
+
+    <div style="display:flex; justify-content:space-between;">
+        <div>
+            <h3>{{ order.restaurant.name }}</h3>
+            <p class="date">{{ order.created_at|date:"M d, Y - H:i" }}</p>
+        </div>
+
+        <div>
+            <span class="status {{ order.status }}">
+                {{ order.status }}
+            </span>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Items -->
+    {% for item in order.orderitem_set.all %}
+        <div class="item-row">
+            <span>{{ item.food.name }}</span>
+            <span>x{{ item.quantity }}</span>
+        </div>
+    {% endfor %}
+
+    <hr>
+
+    <div style="display:flex; justify-content:space-between;">
+        <strong>Total</strong>
+        <strong>₹{{ order.total_price }}</strong>
+    </div>
+
+</div>
+{% empty %}
+<p>No orders yet 😅</p>
+{% endfor %}
+
+{% endblock %}

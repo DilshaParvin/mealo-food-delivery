@@ -1,0 +1,6 @@
+<h2>Pending Restaurants</h2>
+{% for r in restaurants %}
+  <p>{{ r.name }} - <a href="{% url 'approve_restaurant' r.id %}">Approve</a></p>
+{% empty %}
+  <p>No pending restaurants.</p>
+{% endfor %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="display:flex; justify-content:center; align-items:center; height:80vh;">
+
+    <div class="card" style="text-align:center; padding:40px; max-width:400px;">
+
+        <h1 style="font-size:60px;">🎉</h1>
+
+        <h2>Order Confirmed!</h2>
+
+        <p style="color:gray; margin:15px 0;">
+            Your order has been placed successfully.
+            Sit back and relax 🍔🚀
+        </p>
+
+        <a href="{% url 'dashboard' %}">
+            <button class="btn" style="width:100%;">
+                Back to Home
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

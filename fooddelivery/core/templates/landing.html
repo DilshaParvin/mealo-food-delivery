@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Delivery</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* VIDEO BACKGROUND */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* DARK OVERLAY */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: transparent !important;
+            padding: 20px 40px;
+        }
+
+        .nav-link, .navbar-brand {
+            color: white !important;
+            font-weight: 500;
+        }
+
+        .btn-auth {
+            border: 1px solid white;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-auth:hover {
+            background: #ff7043;
+            border: none;
+        }
+
+        /* HERO CONTENT */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .search-box {
+            margin-top: 30px;
+        }
+
+        .search-box input {
+            padding: 12px;
+            width: 300px;
+            border-radius: 30px;
+            border: none;
+        }
+
+        .search-box button {
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            background: #ff7043;
+            color: white;
+            margin-left: 10px;
+        }
+
+        /* FOOTER */
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- VIDEO -->
+<video autoplay muted loop class="video-bg">
+    <source src="/static/videos/food.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">🍽 FoodDelivery</a>
+
+    <div class="ms-auto">
+        <a href="{% url 'login' %}" class="btn btn-auth">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-auth">Sign Up</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div>
+        <h1>Discover the best food & drinks</h1>
+        <p>Order from your favorite restaurants near you</p>
+
+        <div class="search-box">
+            <input type="text" placeholder="Search for food or restaurant...">
+            <button>Search</button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 FoodDelivery | Designed by You 💼
+</div>
+
+</body>
+</html>

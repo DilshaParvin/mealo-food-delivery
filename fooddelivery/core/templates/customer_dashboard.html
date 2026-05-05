@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- 🔍 Search Section -->
+<form method="GET" class="search-section">
+
+    <div class="search-box">
+
+        <span class="search-icon">🔍</span>
+
+        <input type="text"
+               name="q"
+               placeholder="Search food or restaurants..."
+               value="{{ request.GET.q }}">
+
+    </div>
+
+</form>
+
+<!-- 🍱 Category Scroll -->
+<div style="display: flex; gap: 15px; overflow-x: auto; margin-bottom: 25px;">
+
+    <div class="category-pill">🍕 Pizza</div>
+    <div class="category-pill">🍔 Burger</div>
+    <div class="category-pill">🥤 Drinks</div>
+    <div class="category-pill">🍰 Desserts</div>
+    <div class="category-pill">🍗 Chicken</div>
+
+</div>
+
+<!-- 🔥 Section Title -->
+<h2 style="margin-bottom: 15px;">🔥 Popular Foods</h2>
+
+<!-- 🍽 Food Grid -->
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px;">
+
+    {% for food in foods %}
+    <div class="card food-card">
+
+        {% if food.image %}
+        <img src="{{ food.image.url }}" class="food-img">
+        {% endif %}
+
+        <h3>{{ food.name }}</h3>
+        <p class="desc">{{ food.description|truncatewords:10 }}</p>
+
+        <div class="food-bottom">
+            <span class="price">₹{{ food.price }}</span>
+
+            <a href="{% url 'add_to_cart' food.id %}">
+                <button class="btn">Add</button>
+            </a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
